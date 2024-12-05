@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+.columns-wrapper {
+  padding: 0 15px;
+}
+
 .columns img {
   width: 100%;
 }
@@ -13,10 +17,133 @@
 
 .columns > div > .columns-img-col {
   order: 0;
+
 }
 
 .columns > div > .columns-img-col img {
   display: block;
+}
+
+.columns div[data-align="center"] {
+  text-align: center;
+  flex: 1;
+  order: unset;
+}
+
+.columns p {
+  color: #333;
+  font-size: 14px;
+  font-family: proxima-nova, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 auto 25px;
+  max-width: 880px;
+  padding: 0 15px;
+  text-align: center;
+}
+
+.columns.seventy-thirty p {
+  line-height: 26px;
+  padding: 0 5px;
+}
+
+.columns div[data-align="center"] p {
+  text-align: center;
+}
+
+.columns h2 {
+  color: #333;
+  font-size: 24px;
+  font-family: proxima-nova, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 2px auto 30px;
+  max-width: 880px;
+  padding: 0 15px;
+}
+
+.columns h3 {
+  color: #333;
+  font-size: 32px;
+  font-family: proxima-nova-light, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 2px auto 11px;
+  max-width: 880px;
+  padding: 40px 15px 0;
+  text-align: center;
+}
+
+.columns li {
+  color: #333;
+  font-size: 14px;
+  font-family: proxima-nova, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+  max-width: 880px;
+  padding: 0 15px;
+}
+
+.columns ul {
+  padding-left: 20px;
+}
+
+.columns a {
+  color: #00493d;
+  text-decoration: underline;
+  font-size: 14px;
+  font-family: proxima-nova, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0 auto 25px;
+  max-width: 880px;
+}
+
+.columns.seventy-thirty {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+}
+
+.columns.seventy-thirty li {
+  line-height: 20px;
+  padding: 0 5px 4px;
+}
+
+.columns.seventy-thirty .columns-img-col {
+  flex-basis: 30%;
+}
+
+.columns.fifty-fifty .columns-img-col {
+  flex-basis: 80%;
+}
+
+.columns.seperators {
+  border-bottom: 2px solid #333;
+  border-top: 2px solid #333;
+  margin-top: 100px;
+}
+
+.columns .button-container a {
+  background: #00493d;
+  border: 1.5px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  display: inline-block;
+  font-family: proxima-nova, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.44;
+  padding: 11px 3pc;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .4s, color .4s, border-color .4s ease-in-out;
+}
+
+.columns .button-container a:hover, .columns .button-container a:focus {
+  background-color: #fff;
+  border: 1.5px solid #00493d;
+  color: #00493d;
+  text-decoration: none;
 }
 
 @media (width >= 900px) {
@@ -27,41 +154,48 @@
   }
 
   .columns > div > div {
-    flex: 1;
     order: unset;
   }
-}
+  
+  .columns > div > .columns-img-col {
+    order: unset;
+  }
 
-.columns div[data-align="center"] {
-  text-align: center;
-}
+  .columns h2 {
+    font-size: 40px;
+    font-family: proxima-nova, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.25;
+    margin: 30px auto 42px;
+    max-width: 880px;
+    padding: 0;
+  }
 
-.columns h2 {
-  font-size: 40px;
-  font-family: proxima-nova, Arial, sans-serif;
-  font-weight: 400;
-  line-height: 50px;
-  margin: 60px auto;
-  max-width: 880px;
+  .columns h3 {
+    text-align: left;
+    padding: 40px 0 0;
+  }
 
-}
+  .columns p {
+    font-size: 16px;
+    font-family: proxima-nova, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 22px;
+    margin: 0 auto 25px;
+    max-width: 880px;
+    padding: 0;
+    text-align: left;
+  }
 
-.columns p {
-  font-size: 16px;
-  font-family: proxima-nova, Arial, sans-serif;
-  font-weight: 400;
-  line-height: 22px;
-  margin: 0 auto 25px;
-  max-width: 880px;
-}
+  .columns li {
+    font-size: 16px;
+    font-family: proxima-nova, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 22px;
+  }
 
-.columns a {
-  color: #00493d;
-  text-decoration: underline;
-  font-size: 16px;
-  font-family: proxima-nova, Arial, sans-serif;
-  font-weight: 400;
-  line-height: 22px;
-  margin: 0 auto 25px;
-  max-width: 880px;
+  .columns a {
+    font-size: 16px;
+  }
+
 }
