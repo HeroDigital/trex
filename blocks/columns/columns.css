@@ -215,7 +215,7 @@
     font-size: 16px;
   }
 
-  .columns.button-container a {
+  .columns .button-container a {
     width: auto;
   }
 

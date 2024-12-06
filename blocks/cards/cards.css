@@ -5,17 +5,80 @@ main > .section > .cards-wrapper {
   width: 100%;
 }
 
+main > .section.card-lockup {
+  margin-bottom: 0;
+}
+
 .cards > ul {
-  display: flex;
   padding: 0;
+  margin: 0;
 }
 
 .cards > ul > li {
-  flex: 1;
-  margin: 0;
-  padding: 0;
-  display: block;
+  display: table;
+  transition: background-color .4s, color .4s ease-in-out;
   text-align: center;
+  position: relative;
+}
+
+.cards > ul > li a {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.cards > ul > li:hover {
+  background-color: #00493d;
+}
+
+.card-lockup .cards h2 {
+  font-size: 60px;
+  font-family: proxima-nova-light, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.25;
+  color: #00493d;
+}
+
+.card-lockup .cards h3 {
+  font-size: 14px;
+  font-family: proxima-nova-bold, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.25;
+  color: #00493d;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.cards > ul > li:hover h2, .cards > ul > li:hover h3 {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.cards > ul > li:hover h3 {
+  text-decoration: underline;
+}
+
+.card-lockup .cards picture {
+  display: none;
+}
+
+.card-lockup .cards picture:first-of-type {
+  display: block;
+}
+
+.card-lockup .cards > ul > li:hover picture {
+  display: block;
+}
+
+.card-lockup .cards > ul > li:hover .first-image-card picture {
+  display: block!important;
+}
+
+.card-lockup .cards > ul > li:hover picture:first-of-type {
+  display: none;
+}
+
+.cards > ul > li > a:hover{
+  text-decoration: none;
 }
 
 .card-lockup {
@@ -24,9 +87,54 @@ main > .section > .cards-wrapper {
 }
 
 .card-lockup .cards > ul > li {
-  flex-basis: 25%;
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
+.card-lockup .cards > ul > li > a {
+  display: block;
 }
 
 .card-lockup .cards > ul > li:first-of-type {
-  flex-basis: 50%;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.card-lockup .cards > ul > li:last-of-type::before {
+  border-right: 1px solid #333;
+  bottom: 50px;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50px;
+}
+
+@media (width >= 900px) {
+  .cards > ul {
+    display: flex;
+    padding: 0;
+  }
+
+  .cards > ul > li {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card-lockup .cards > ul > li {
+    flex-basis: 25%;
+    display: table;
+  }
+
+  .card-lockup .cards > ul > li:first-of-type {
+    flex-basis: 50%;
+    margin-bottom: unset;
+  }
+
+  .card-lockup .cards > ul > li > a {
+    display: table-cell;
+  }
+
 }
