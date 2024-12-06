@@ -1,27 +1,32 @@
-.cards > ul {
-  list-style: none;
-  margin: 0;
+main > .section > .cards-wrapper {
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  grid-gap: 24px;
+  margin: 0;
+  max-width: unset;
+  width: 100%;
+}
+
+.cards > ul {
+  display: flex;
+  padding: 0;
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  display: block;
+  text-align: center;
 }
 
-.cards .cards-card-body {
-  margin: 16px;
+.card-lockup {
+  background-color: #F8F8F8;
+  display: flex;
 }
 
-.cards .cards-card-image {
-  line-height: 0;
+.card-lockup .cards > ul > li:first-of-type {
+  flex-basis: 50%;
 }
 
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.card-lockup .cards > ul > li {
+  flex-basis: 25%;
 }

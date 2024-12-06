@@ -121,7 +121,17 @@
 .columns.seperators {
   border-bottom: 2px solid #333;
   border-top: 2px solid #333;
-  margin-top: 100px;
+  margin-top: 50px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.columns.seperators h2 {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: proxima-nova-semi-bold, Arial, sans-serif;
+  margin-top: 48px;
+  margin-bottom: 31px;
 }
 
 .columns .button-container a {
@@ -137,6 +147,13 @@
   text-align: center;
   text-decoration: none;
   transition: background-color .4s, color .4s, border-color .4s ease-in-out;
+  width: 100%;
+}
+
+.columns.seperators .button-container a {
+  padding: 11px 48px;
+  font-size: 18px;
+  width: auto;
 }
 
 .columns .button-container a:hover, .columns .button-container a:focus {
@@ -196,6 +213,26 @@
 
   .columns a {
     font-size: 16px;
+  }
+
+  .columns.button-container a {
+    width: auto;
+  }
+
+  .columns.seperators {
+    margin-top: 137px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .columns.seperators h2 {
+    font-size: 32px;
+    margin-top: 50px;
+  }
+
+  .columns.seperators .button-container a {
+    padding: 16px 48px;
+    font-size: 21px;
   }
 
 }
