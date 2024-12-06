@@ -23,10 +23,10 @@ main > .section > .cards-wrapper {
   display: flex;
 }
 
-.card-lockup .cards > ul > li:first-of-type {
-  flex-basis: 50%;
-}
-
 .card-lockup .cards > ul > li {
   flex-basis: 25%;
+}
+
+.card-lockup .cards > ul > li:first-of-type {
+  flex-basis: 50%;
 }
