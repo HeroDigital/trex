@@ -13,6 +13,10 @@ footer .section {
   margin: 0 auto;
   max-width: 540px;
 
+  &.last-footer-section details {
+    border-bottom: none;
+  }
+
   ul {
     list-style: none;
     margin: 0;
@@ -29,8 +33,8 @@ footer .section {
 
   /* Footer Section Header */
   summary {
+    font-family: proxima-nova-semi-bold, Arial, sans-serif;
     font-size: 13px;
-    font-weight: bold;
     list-style: none;
     margin: 24px 0 14px;
     position: relative;
@@ -60,12 +64,16 @@ footer .section {
       text-transform: none;
 
       > li {
+        align-items: flex-end;
+        display: flex;
+        flex-direction: row;
         line-height: 2;
       }
     }
   }
-  
+
   details {
+
     &[open] > summary {
       &::after {
         transform: rotate(180deg);
@@ -76,16 +84,129 @@ footer .section {
 
 footer .footer > div {
   margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  padding: 40px 120px;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+footer {
+  .footer-middle {
+    padding: 48px 0 16px;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      margin: 0 10px;
+
+      picture {
+        img {
+          height: 32px;
+          width: 32px;
+        }
+      }
+    }
+
+    .footer-form {
+      select {
+        font-size: 16px;
+        margin: 20px 0;
+        padding: 10px;
+        width: 100%;
+      }
+
+      .footer-country-dropdown p {
+        font-size: 12px;
+      }
+    }
   }
+
+  .footer-bottom {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+@media (width >= 900px) {
+
+  footer .footer {
+
+    > div {
+      display: grid;
+      flex-direction: row;
+      gap: 10px;
+      grid-template-columns: repeat(5, 1fr);
+      margin: 0 auto;
+      max-width: 1500px;
+    }
+
+    .section {
+      margin: 0;
+      width: fit-content;
+
+      summary {
+        pointer-events: none;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    details {
+      border-bottom: none;
+      border-top: 1px solid white;
+    }
+
+    .footer-extras {
+      align-items: center;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      gap: 20px;
+      grid-column: 1/7;
+    }
+
+    .footer-bottom {
+      max-width: none;
+      text-align: left;
+
+      p:first-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    .footer-middle {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 20px;
+
+      li {
+        margin: 0 5px;
+
+        picture {
+          img {
+            height: 24px;
+            width: 24px;
+          }
+        }
+      }
+
+      .footer-form {
+
+        select {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
 }

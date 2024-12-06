@@ -18,7 +18,10 @@ export default async function decorate(block) {
 
   block.append(footer);
 
-  const footerLists = block.querySelectorAll('div > .section');
+  const footerList = block.querySelectorAll('div')[0];
+  const footerLists = block.querySelectorAll('div > .section:not(.footer-middle, .footer-bottom)');
+  const footerMiddle = block.querySelectorAll('div > .section.footer-middle')[0];
+  const footerBottom = block.querySelectorAll('div > .section.footer-bottom')[0];
   footerLists.forEach((list) => {
     // Find the default-content-wrapper element
     const defaultWrapper = list.querySelector('.default-content-wrapper');
@@ -45,4 +48,23 @@ export default async function decorate(block) {
       defaultWrapper.parentNode.replaceChild(details, defaultWrapper);
     }
   });
+
+  const footerCountryDropdown = `<div class="footer-country-dropdown">
+    <select name="country" id="country">
+      <option value="default">Country</option>
+      <option value="us">🇺🇸 United States</option>
+      <option value="ca">🇨🇦 Canada</option>
+      <option value="uk">🇬🇧 United Kingdom</option>
+    </select>
+    <p>By choosing your country, you acknowledge that you have read Trex's Privacy's Policy</p>
+  </div>`;
+  const footerForm = document.createElement('div');
+  footerForm.className = 'footer-form';
+  footerForm.innerHTML = footerCountryDropdown;
+  footerMiddle.appendChild(footerForm);
+  const footerExtras = document.createElement('div');
+  footerExtras.className = 'footer-extras';
+  footerList.appendChild(footerExtras);
+  footerExtras.appendChild(footerMiddle);
+  footerExtras.appendChild(footerBottom);
 }
