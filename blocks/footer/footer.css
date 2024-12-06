@@ -1,18 +1,12 @@
 footer {
   background-color: #333;
   color: white;
-  font-family: proxima-nova, Arial, sans-serif, sans-serif;
+  font-family: proxima-nova, Arial, sans-serif;
 }
 
 footer details {
   border-bottom: 1px solid white;
   padding: 0 0 10px;
-
-  &[open] > summary {
-    &::after {
-      transform: rotate(180deg);
-    }
-  }
 }
 
 footer .section {
@@ -47,7 +41,7 @@ footer .section {
     }
 
     &::after {
-      background-image: url(../../icons/icon-arrow-down.png);
+      background-image: url('../../icons/icon-arrow-down.png');
       content: "";
       display: block;
       height: 10px;
@@ -67,6 +61,14 @@ footer .section {
 
       > li {
         line-height: 2;
+      }
+    }
+  }
+  
+  details {
+    &[open] > summary {
+      &::after {
+        transform: rotate(180deg);
       }
     }
   }
