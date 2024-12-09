@@ -131,7 +131,7 @@ footer {
       padding: 40px 120px;
     }
 
-    .section:not(.footer-middle):not(.footer-bottom) {
+    .section:not(.footer-middle, .footer-bottom) {
       margin: 0;
       width: 220px;
 
