@@ -66,11 +66,15 @@ footer {
 
   .footer > div {
     margin: auto;
-    padding: 40px 120px;
+    padding: 40px 15px;
   }
 
   .footer p {
     margin: 0;
+  }
+
+  .footer ul li ul li a {
+    display: inline;
   }
 
   .footer-middle {
@@ -124,11 +128,12 @@ footer {
       grid-template-columns: repeat(5, 1fr);
       margin: 0 auto;
       max-width: 1500px;
+      padding: 40px 120px;
     }
 
-    .section {
+    .section:not(.footer-middle):not(.footer-bottom) {
       margin: 0;
-      width: fit-content;
+      width: 220px;
 
       summary {
         pointer-events: none;
@@ -141,7 +146,7 @@ footer {
 
     details {
       border-bottom: none;
-      border-top: 1px solid white;
+      border-top: 1px solid #797979;
     }
 
     .footer-extras {
