@@ -11,13 +11,15 @@
  */
 
 :root {
+  interpolate-size: allow-keywords;
+
   /* colors */
   --background-color: white;
   --light-color: #f8f8f8;
   --dark-color: #505050;
   --text-color: #333;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --link-color: #00493d;
+  --link-hover-color: #00493d;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -36,8 +38,13 @@
   --heading-font-size-s: 24px;
   --heading-font-size-xs: 22px;
 
-  /* nav height */
-  --nav-height: 64px;
+  /* nav */
+  --nav-height: 103px;
+  --nav-font-size: 18px;
+  --subnav-font-size: 16px;
+
+  /* spacing */
+  --spacing: 16px;
 }
 
 /* fallback fonts */
@@ -82,10 +89,6 @@ body {
 
 body.appear {
   display: block;
-}
-
-header {
-  height: var(--nav-height);
 }
 
 header .header,
@@ -140,6 +143,10 @@ pre {
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
+}
+
+main {
+  padding-top: var(--nav-height); /* height of nav in header.css */
 }
 
 main > div {
