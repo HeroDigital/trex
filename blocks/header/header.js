@@ -96,10 +96,14 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     // collapse menu on escape press
     window.addEventListener('keydown', closeOnEscape);
     // collapse menu on focus lost
-    // nav.addEventListener('focusout', closeOnFocusLost);
+    if (isDesktop.matches) {
+      nav.addEventListener('focusout', closeOnFocusLost);
+    }
   } else {
     window.removeEventListener('keydown', closeOnEscape);
-    // nav.removeEventListener('focusout', closeOnFocusLost);
+    if (isDesktop.matches) {
+      nav.removeEventListener('focusout', closeOnFocusLost);
+    }
   }
 }
 

@@ -11,6 +11,7 @@
  */
 
 :root {
+  /* stylelint-disable-next-line property-no-unknown */
   interpolate-size: allow-keywords;
 
   /* colors */
