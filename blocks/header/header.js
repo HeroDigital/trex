@@ -4,6 +4,9 @@ import { loadFragment } from '../fragment/fragment.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+// selector for main element
+const main = document.querySelector('main');
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -156,6 +159,20 @@ export default async function decorate(block) {
         toggleAllNavSections(navSections);
         navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
       });
+      if (isDesktop.matches) {
+        navSection.addEventListener('mouseover', () => {
+          const expanded = navSection.getAttribute('aria-expanded') === 'true';
+          toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          main.classList.toggle('nav-hover', !expanded);
+        });
+        navSection.addEventListener('mouseout', () => {
+          const expanded = navSection.getAttribute('aria-expanded') === 'true';
+          toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          main.classList.toggle('nav-hover', !expanded);
+        });
+      }
     });
   }
 
