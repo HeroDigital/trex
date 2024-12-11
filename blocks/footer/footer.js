@@ -50,6 +50,7 @@ export default async function decorate(block) {
   });
 
   const footerCountryDropdown = `<div class="footer-country-dropdown">
+    <label for="country">Country</label>
     <select name="country" id="country">
       <option value="default">Country</option>
       <option value="us">🇺🇸 United States</option>

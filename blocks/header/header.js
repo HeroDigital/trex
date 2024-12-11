@@ -4,6 +4,9 @@ import { loadFragment } from '../fragment/fragment.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+// selector for main element
+const main = document.querySelector('main');
+
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
@@ -73,7 +76,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
+  toggleAllNavSections(navSections, 'false');
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   // enable nav dropdown keyboard accessibility
   const navDrops = navSections.querySelectorAll('.nav-drop');
@@ -96,10 +99,14 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     // collapse menu on escape press
     window.addEventListener('keydown', closeOnEscape);
     // collapse menu on focus lost
-    nav.addEventListener('focusout', closeOnFocusLost);
+    if (isDesktop.matches) {
+      nav.addEventListener('focusout', closeOnFocusLost);
+    }
   } else {
     window.removeEventListener('keydown', closeOnEscape);
-    nav.removeEventListener('focusout', closeOnFocusLost);
+    if (isDesktop.matches) {
+      nav.removeEventListener('focusout', closeOnFocusLost);
+    }
   }
 }
 
@@ -126,6 +133,7 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
+  navBrand.classList.add('mobile-only');
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
@@ -134,15 +142,40 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection, index) => {
+      if (navSection.querySelector('ul')) {
+        navSection.classList.add('nav-drop');
+        navSection.setAttribute('aria-expanded', 'false');
+      }
+      if (index === 1) {
+        const clonedNavBrand = navBrand.cloneNode(true);
+        const newListItem = document.createElement('li'); // Create a new list item to be more accessible
+        newListItem.innerHTML = clonedNavBrand.innerHTML; // Copy content
+        newListItem.classList.remove('mobile-only');
+        newListItem.classList.add('section', 'nav-brand', 'desktop-only');
+        clonedNavBrand.parentNode?.replaceChild(newListItem, clonedNavBrand); // Replace the node
+        // move the navBrand element to after this navSection
+        navSection.after(newListItem);
+      }
       navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
+        const expanded = navSection.getAttribute('aria-expanded') === 'true';
+        toggleAllNavSections(navSections);
+        navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      });
+      if (isDesktop.matches) {
+        navSection.addEventListener('mouseenter', () => {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        }
-      });
+          main.classList.toggle('nav-hover', !expanded);
+        });
+        navSection.addEventListener('mouseleave', () => {
+          const expanded = navSection.getAttribute('aria-expanded') === 'true';
+          toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          main.classList.toggle('nav-hover', !expanded);
+        });
+      }
     });
   }
 
