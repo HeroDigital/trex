@@ -186,12 +186,6 @@ header .nav-brand {
   text-align: center;
 }
 
-header .nav-brand p,
-header nav .nav-tools .default-content-wrapper p {
-  color: transparent;
-  font-size: 0;
-}
-
 header nav .nav-brand img {
   height: 44px;
   width: 85px;
@@ -435,6 +429,10 @@ header nav .nav-sections .default-content-wrapper > ul > li {
     margin: 0;
   }
 
+  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
+    padding: 8px 0;
+  }
+
   header nav .nav-sections .default-content-wrapper > ul > li:not(.nav-brand) {
     flex: 0 1 auto;
     position: relative;
@@ -467,10 +465,6 @@ header nav .nav-sections .default-content-wrapper > ul > li {
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-bottom: 8px solid var(--light-color);
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
   }
 }
 
@@ -505,7 +499,7 @@ header nav .nav-tools {
 
   header .nav-brand {
     position: absolute;
-    top: -60px;
+    top: -46px;
     z-index: 2;
 
     picture img {
@@ -529,22 +523,78 @@ header nav .nav-tools {
       > ul {
         align-items: center;
         display: flex;
+        gap: 0;
         justify-content: center;
         margin: 0;
         position: relative;
         width: 100%;
 
+        > li[aria-expanded='true'] {
+          &:nth-of-type(5) ul {
+            columns: 1;
+            display: flex;
+
+            li {
+              ul {
+                display: flex;
+                flex-direction: column;
+              }
+            }
+          }
+
+          li {
+            &:empty {
+              display: none;
+            }
+
+            a {
+              font-size: var(--nav-font-size);
+            }
+          }
+
+          &:nth-of-type(1) li:last-child,
+          &:nth-of-type(2) li:last-child,
+          &:nth-of-type(3) li:last-child,
+          &:nth-of-type(5) li ul li:last-child {
+            a {
+              border: none;
+              font-family: proxima-nova-semi-bold, sans-serif;
+              font-size: 14px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              text-transform: uppercase;
+
+              &::after {
+                box-shadow: inset -1px 1px 0 0 #00493d;
+                content: "";
+                height: 7px;
+                margin-left: 7px;
+                position: absolute;
+                bottom: 26px;
+                transform: rotate(45deg);
+                width: 7px;
+              }
+            }
+          }
+        }
+
+        /* stylelint-disable */
         &:first-of-type {
           > li:not(.nav-brand) {
             font-size: var(--nav-font-size-large);
-            line-height: 75px;
+            line-height: 59px;
+            margin-top: var(--spacing);
             min-height: 0;
-            padding-left: 30px;
-            padding-right: 30px;
+            padding: 0 40px;
+
+            &:hover {
+              border-bottom: 2px solid var(--link-color);
+            }
 
             &::after {
               height: 0;
-              right: 5px;
+              right: 15px;
               rotate: 0deg;
               top: 50%;
               transform: none;
@@ -554,6 +604,16 @@ header nav .nav-tools {
             &:hover::after {
               rotate: 180deg;
               transform: none;
+            }
+
+            &:last-of-type {
+              background: var(--link-color);
+              color: white;
+              padding-right: 50px;
+
+              &::after {
+                right: 30px;
+              }
             }
 
             > ul {
@@ -570,15 +630,13 @@ header nav .nav-tools {
             }
 
             &[aria-expanded='true'] > ul {
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              margin: 0;
+              columns: 2;
+              margin: 2px 0 0;
               padding: var(--spacing);
             }
           }
         }
 
-        /* stylelint-disable */
         &:last-of-type {
           border: none;
           background-color: var(--light-color);
@@ -607,6 +665,18 @@ header nav .nav-tools {
                 right: 35px;
                 width: 0;
                 transform: none;
+              }
+
+              ul {
+                display: flex;
+                flex-direction: column;
+                left: 0;
+                margin: 0;
+
+                li {
+                  text-align: left;
+                  width: max-content;
+                }
               }
             }
           }

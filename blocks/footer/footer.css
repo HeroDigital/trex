@@ -96,6 +96,11 @@ footer {
     }
 
     .footer-form {
+      label {
+        color: transparent;
+        font-size: 0;
+      }
+
       select {
         font-size: 16px;
         margin: 20px 0;
