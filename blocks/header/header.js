@@ -148,11 +148,14 @@ export default async function decorate(block) {
         navSection.setAttribute('aria-expanded', 'false');
       }
       if (index === 1) {
-        const desktopNavBrand = navBrand.cloneNode(true);
-        desktopNavBrand.classList.remove('mobile-only');
-        desktopNavBrand.classList.add('desktop-only');
+        const clonedNavBrand = navBrand.cloneNode(true);
+        const newListItem = document.createElement('li'); // Create a new list item to be more accessible
+        newListItem.innerHTML = clonedNavBrand.innerHTML; // Copy content
+        newListItem.classList.remove('mobile-only');
+        newListItem.classList.add('section', 'nav-brand', 'desktop-only');
+        clonedNavBrand.parentNode?.replaceChild(newListItem, clonedNavBrand); // Replace the node
         // move the navBrand element to after this navSection
-        navSection.after(desktopNavBrand);
+        navSection.after(newListItem);
       }
       navSection.addEventListener('click', () => {
         const expanded = navSection.getAttribute('aria-expanded') === 'true';
@@ -160,13 +163,13 @@ export default async function decorate(block) {
         navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
       });
       if (isDesktop.matches) {
-        navSection.addEventListener('mouseover', () => {
+        navSection.addEventListener('mouseenter', () => {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
           main.classList.toggle('nav-hover', !expanded);
         });
-        navSection.addEventListener('mouseout', () => {
+        navSection.addEventListener('mouseleave', () => {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');

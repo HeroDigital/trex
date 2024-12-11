@@ -228,7 +228,7 @@ header nav .nav-sections .default-content-wrapper > ul {
   margin: var(--spacing) 0;
   padding-left: 0;
 
-  li:nth-of-type(4) li {
+  li:nth-of-type(5) li {
     color: black;
     font-family: proxima-nova-semi-bold, sans-serif;
     padding: var(--spacing);
@@ -243,7 +243,7 @@ header nav .nav-sections .default-content-wrapper > ul {
   &:first-of-type {
     padding-left: 0;
     /* stylelint-disable */
-    > li {
+    > li:not(.nav-brand) {
       color: var(--link-color);
       cursor: pointer;
       font-family: var(--subnav-font-size);
@@ -363,7 +363,7 @@ header nav .nav-sections .default-content-wrapper > ul > li {
   &:nth-of-type(1) li:last-child,
   &:nth-of-type(2) li:last-child,
   &:nth-of-type(3) li:last-child,
-  &:nth-of-type(4) li ul li:last-child {
+  &:nth-of-type(5) li ul li:last-child {
     a {
       border: 2px solid var(--link-color);
       display: block;
@@ -429,7 +429,7 @@ header nav .nav-sections .default-content-wrapper > ul > li {
     margin: 0;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
+  header nav .nav-sections .default-content-wrapper > ul > li:not(.nav-brand) {
     flex: 0 1 auto;
     position: relative;
   }
@@ -529,7 +529,7 @@ header nav .nav-tools {
         width: 100%;
 
         &:first-of-type {
-          > li {
+          > li:not(.nav-brand) {
             font-size: var(--nav-font-size-large);
             line-height: 75px;
             min-height: 0;
