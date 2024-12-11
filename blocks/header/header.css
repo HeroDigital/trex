@@ -186,6 +186,12 @@ header .nav-brand {
   text-align: center;
 }
 
+header .nav-brand p,
+header nav .nav-tools .default-content-wrapper p {
+  color: transparent;
+  font-size: 0;
+}
+
 header nav .nav-brand img {
   height: 44px;
   width: 85px;
