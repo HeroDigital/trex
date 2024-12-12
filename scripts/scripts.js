@@ -115,10 +115,11 @@ async function loadLazy(doc) {
  * without impacting the user experience.
  */
 function loadDelayed() {
-  // eslint-disable-next-line import/no-cycle
-  if (window.location.search.indexOf('delayedScripts=true') > -1)
-  window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
+  // eslint-disable-next-line import/no-cycle
+  if (window.location.search.indexOf('delayedScripts=true') > -1) {
+    window.setTimeout(() => import('./delayed.js'), 3000);
+  }
 }
 
 async function loadPage() {
