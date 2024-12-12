@@ -624,11 +624,14 @@ header nav .nav-tools {
             }
 
             > ul {
-              box-shadow: none;
+              background: white;
+              box-shadow: 0 0 10px hsl(0deg 0% 0% / 10%);
+              left: 0;
               padding: 0;
 
               li {
-                padding: 0 var(--spacing);
+                line-height: 22px;
+                padding: var(--spacing) var(--spacing) 8px;
 
                 a {
                   padding: 0;
@@ -639,7 +642,7 @@ header nav .nav-tools {
             &[aria-expanded='true'] > ul {
               columns: 2;
               margin: 2px 0 0;
-              padding: var(--spacing);
+              padding: 32px 24px 40px;
             }
           }
         }
@@ -666,8 +669,9 @@ header nav .nav-tools {
             }
 
             &.nav-drop {
-              position: absolute;
-              right: 85px;
+              margin-right: 100px;
+              position: fixed;
+              right: 0;
               text-align: right;
 
               &::after {
@@ -707,7 +711,7 @@ header nav .nav-tools {
                 overflow-y: auto;
                 margin-top: 0;
                 padding: 0;
-                right: 0;
+                right: -35px;
                 left: unset;
                 visibility: visible;
               }
@@ -734,9 +738,16 @@ header nav .nav-tools {
       gap: var(--spacing);
       height: 100%;
       justify-content: space-between;
+      position: relative;
 
       p {
+        align-self: flex-end;
         padding: var(--spacing);
+
+        &:first-of-type {
+          padding: 0 44px 25px 0;
+          
+        }
       }
     }
   }
