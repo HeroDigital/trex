@@ -5,6 +5,10 @@
 
 .hero {
   position: relative;
+
+  p {
+    margin: 0;
+  }
 }
 
 .hero h1 {

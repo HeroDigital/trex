@@ -11,13 +11,16 @@
  */
 
 :root {
+  /* stylelint-disable-next-line property-no-unknown */
+  interpolate-size: allow-keywords;
+
   /* colors */
   --background-color: white;
   --light-color: #f8f8f8;
   --dark-color: #505050;
   --text-color: #333;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --link-color: #00493d;
+  --link-hover-color: #00493d;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -36,8 +39,14 @@
   --heading-font-size-s: 24px;
   --heading-font-size-xs: 22px;
 
-  /* nav height */
-  --nav-height: 64px;
+  /* nav */
+  --nav-height: 103px;
+  --nav-font-size: 18px;
+  --nav-font-size-large: 21px;
+  --subnav-font-size: 16px;
+
+  /* spacing */
+  --spacing: 16px;
 }
 
 /* fallback fonts */
@@ -82,10 +91,6 @@ body {
 
 body.appear {
   display: block;
-}
-
-header {
-  height: var(--nav-height);
 }
 
 header .header,
@@ -140,6 +145,38 @@ pre {
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
+}
+
+main {
+  padding-top: var(--nav-height); /* height of nav in header.css */
+}
+
+
+@media (width >= 900px) {
+  main {
+    padding-top: 0;
+
+    &::after {
+      content: '';
+      background-color: transparent;
+      height: 0;
+      transition: 180ms background-color ease-in-out;
+      visibility: hidden;
+      width: 0;
+    }
+
+    &.nav-hover::after {
+      background-color: hsl(0deg 0% 0% / 65%);
+      content: '';
+      display: block;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      visibility: visible;
+      width: 100%;
+    }
+  }
 }
 
 main > div {
@@ -254,4 +291,16 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+@keyframes fade-in-up {
+  0% {
+    transform: translateY(30%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }
