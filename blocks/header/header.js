@@ -130,6 +130,12 @@ export default async function decorate(block) {
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
+    if (i === 1) {
+      const subNav = section.querySelector('.default-content-wrapper > ul + ul');
+      if (subNav) {
+        subNav.classList.add('nav-sub-nav');
+      }
+    }
   });
 
   const navBrand = nav.querySelector('.nav-brand');
@@ -144,9 +150,12 @@ export default async function decorate(block) {
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection, index) => {
       if (navSection.querySelector('ul')) {
+        // add nav-drop class to nav sections with subnav
         navSection.classList.add('nav-drop');
         navSection.setAttribute('aria-expanded', 'false');
       }
+      // the first navSection list item is the navBrand
+      // and we want to move it to appear elsewhere in the dom
       if (index === 1) {
         const clonedNavBrand = navBrand.cloneNode(true);
         const newListItem = document.createElement('li'); // Create a new list item to be more accessible
@@ -157,24 +166,31 @@ export default async function decorate(block) {
         // move the navBrand element to after this navSection
         navSection.after(newListItem);
       }
-      navSection.addEventListener('click', () => {
-        const expanded = navSection.getAttribute('aria-expanded') === 'true';
-        toggleAllNavSections(navSections);
-        navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-      });
-      if (isDesktop.matches) {
-        navSection.addEventListener('mouseenter', () => {
+      // add event listeners to nav sections with subnav
+      if (navSection.classList.contains('nav-drop')) {
+        navSection.addEventListener('click', () => {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          main.classList.toggle('nav-hover', !expanded);
         });
-        navSection.addEventListener('mouseleave', () => {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          main.classList.toggle('nav-hover', !expanded);
-        });
+        if (isDesktop.matches) {
+          navSection.addEventListener('mouseenter', () => {
+            const expanded = navSection.getAttribute('aria-expanded') === 'true';
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            if (!navSection.parentNode.classList.contains('nav-sub-nav')) {
+              main.classList.toggle('nav-hover', !expanded);
+            }
+          });
+          navSection.addEventListener('mouseleave', () => {
+            const expanded = navSection.getAttribute('aria-expanded') === 'true';
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            if (!navSection.parentNode.classList.contains('nav-sub-nav')) {
+              main.classList.toggle('nav-hover', !expanded);
+            }
+          });
+        }
       }
     });
   }
